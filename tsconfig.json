@@ -3,7 +3,7 @@
       "module": "commonjs",
       "target": "esnext",
       "sourceMap": true,
-      "outDir": "./dist",
+      "outDir": ".",
       "strict": true,
       "typeRoots": [
         "./node_modules/@types",
