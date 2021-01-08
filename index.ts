@@ -14,6 +14,15 @@ export class ComfortRedis {
             })
         })
     }
+
+    public hget(hashKey: string, field: string): Promise<any> {
+        return new Promise((res, rej) => {
+            this.conn.hget(hashKey, field, (err, result) => {
+                if (err instanceof Error) { rej(err) }
+                else { res(result) }
+            })
+        })
+    }
     public hgetall(key: string): Promise<any> {
         return new Promise((res, rej) => {
             this.conn.hgetall(key, (err, result: any) => {
