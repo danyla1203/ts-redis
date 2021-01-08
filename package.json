@@ -1,6 +1,6 @@
 {
   "name": "nice-redis",
-  "version": "1.0.0",
+  "version": "1.1.4",
   "description": "Redis for typescript",
   "main": "index.js",
   "scripts": {
