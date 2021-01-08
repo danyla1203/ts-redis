@@ -1,4 +1,4 @@
-import { RedisClient } from "redis";
+import { RedisClient } from "redis"
 
 export class ComfortRedis {
     conn: RedisClient;
@@ -14,14 +14,12 @@ export class ComfortRedis {
             })
         })
     }
-    public hgetall(key: string): Promise<{ [key:string]: any }> {
+    public hgetall(key: string): Promise<any> {
         return new Promise((res, rej) => {
-            this.conn.hgetall(key, (err, result) => {
+            this.conn.hgetall(key, (err: any, result: any) => {
                 if (result instanceof Error) { rej(err) }
                 else { res(result) }
             })
         })
     }
-    
 }
-
