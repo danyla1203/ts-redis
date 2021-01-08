@@ -43,7 +43,8 @@ export class ComfortRedis {
     public hmset(key: string, data: Object): Promise<string> {
         return new Promise((res, rej) => {
             let arrayedObj = Object.entries(data);
-            let mixinArr: any[] = arrayedObj.map((el: [string, any]) => {
+            let mixinArr: any[] = [];
+            arrayedObj.map((el: [string, any]) => {
                 mixinArr.push(el[0]);
                 mixinArr.push(el[1]);
             })
