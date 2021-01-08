@@ -31,6 +31,15 @@ export class ComfortRedis {
             })
         })
     }
+
+    public hset(hashKey: string, key: string, value: any) {
+        return new Promise((res, rej) => {
+            this.conn.hset(hashKey, key, value, (err, result) => {
+                if (err instanceof Error) { rej(err) }
+                else { res(result) }
+            })
+        })
+    }
     public hmset(key: string, data: Object): Promise<string> {
         return new Promise((res, rej) => {
             let arrayedObj = Object.entries(data);
