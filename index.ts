@@ -43,4 +43,12 @@ export class ComfortRedis {
             })
         })
     }
+    public get(key: string): Promise<any> {
+        return new Promise((res, rej) => {
+            this.conn.get(key, (err, result) => {
+                if (err instanceof Error) { rej(err) }
+                else { res(result) }
+            })
+        })
+    }
 }
