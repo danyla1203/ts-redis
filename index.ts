@@ -22,4 +22,18 @@ export class ComfortRedis {
             })
         })
     }
+    public hmset(key: string, data: Object) {
+        return new Promise((res, rej) => {
+            let arrayedObj = Object.entries(data);
+            let mixinArr: any[] = arrayedObj.map((el: [string, any]) => {
+                mixinArr.push(el[0]);
+                mixinArr.push(el[1]);
+            })
+            this.conn.hmset(key, ...mixinArr , (err: any, result: any) => {
+                if (result instanceof Error) { rej(err) }
+                else { res(result) }
+            })
+        })
+    }
 }
+
