@@ -1,0 +1,21 @@
+{
+  "name": "nice-redis",
+  "version": "1.0.0",
+  "description": "Redis for typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "redis",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redis": "3.0.2"
+  },
+  "devDependencies": {
+    "@types/redis": "2.8.28"
+  }
+}
