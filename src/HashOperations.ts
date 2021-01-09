@@ -6,6 +6,7 @@ export class HashOperations implements Operations {
     constructor(redis: RedisClient) {
         this.conn = redis
     }
+
     public get(hashKey: string, field: string): Promise<any> {
         return new Promise((res, rej) => {
             this.conn.hget(hashKey, field, (err, result) => {
@@ -14,12 +15,30 @@ export class HashOperations implements Operations {
             })
         })
     }
+
+
+    private modifyResult(result: { [key:string]: any }): { [key:string]: string|number } {
+        let modifiedResult: { [key:string]: string|number } = {};
+        for(let column in result) {
+            let tryMulti = result[column] * 1;
+            if (!isNaN(tryMulti)) {
+                modifiedResult[column] = parseInt(result[column]);
+            } else {
+                modifiedResult[column] = result[column];
+            }
+        }
+        return modifiedResult;
+    }
     public getall(key: string): Promise<any> {
         return new Promise((res, rej) => {
-            this.conn.hgetall(key, (err, result: any) => {
-                if (err instanceof Error) { rej(err) }
-                else { res(result) }
-            })
+            this.conn.hgetall(key, (err, result) => {
+                if (err instanceof Error) { 
+                    rej(err) 
+                } else {
+                    let processedResult = this.modifyResult(result);
+                    res(processedResult);
+                }
+            })  
         })
     }
 
