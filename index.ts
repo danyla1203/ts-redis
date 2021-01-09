@@ -1,5 +1,5 @@
 import { RedisClient } from "redis"
-import { HashOperations } from "./HashOperations";
+import { HashOperations } from "./src/HashOperations";
 
 export interface Operations {
     conn: RedisClient;

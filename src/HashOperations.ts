@@ -1,4 +1,4 @@
-import { Operations } from ".";
+import { Operations } from "..";
 import { RedisClient } from "redis";
 
 export class HashOperations implements Operations {
