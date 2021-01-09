@@ -16,7 +16,6 @@ export class HashOperations implements Operations {
         })
     }
 
-
     private modifyResult(result: { [key:string]: any }): { [key:string]: string|number } {
         let modifiedResult: { [key:string]: string|number } = {};
         for(let column in result) {
@@ -59,6 +58,19 @@ export class HashOperations implements Operations {
                 mixinArr.push(el[1]);
             })
             this.conn.hmset(key, ...mixinArr , (err: any, result: string) => {
+                if (err instanceof Error) { rej(err) }
+                else { res(result) }
+            })
+        })
+    }
+
+    public setnx(
+        key: string, 
+        fieldName: string, 
+        value: string
+    ): Promise<number> {
+        return new Promise((res, rej) => {
+            this.conn.hsetnx(key, fieldName, value, (err, result) => {
                 if (err instanceof Error) { rej(err) }
                 else { res(result) }
             })
