@@ -76,4 +76,17 @@ export class HashOperations implements Operations {
             })
         })
     }
+
+    public incby(
+        hashKey: string, 
+        field: string, 
+        value: number
+    ) {
+        return new Promise((res, rej) => {
+            this.conn.hincrby(hashKey, field, value, (err, result) => {
+                if (err instanceof Error) { rej(err) }
+                else { res(result) }
+            })
+        })
+    }
 }
